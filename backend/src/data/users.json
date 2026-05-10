@@ -1,0 +1,23 @@
+[
+  {
+    "id": "e7253eda-acd3-4755-9005-4c8589ac84b4",
+    "name": "Db User",
+    "email": "dbuser@example.com",
+    "passwordHash": "$2b$10$BKfNiu7Yh7d7WJp9IFg33O3gWvqxLboQxkETDhjZaZmFEmO5.QvPC",
+    "createdAt": "2026-04-20T04:03:27.339Z"
+  },
+  {
+    "id": "45d87e34-56b9-4644-82d2-89c43c92711d",
+    "name": "Sql User",
+    "email": "sqluser@example.com",
+    "passwordHash": "$2b$10$ioC7ZZc.TJOvSfEeC2HojuD7A.8xRTbQuh/AR9nw/LmBIRlgs9SXK",
+    "createdAt": "2026-04-20T04:03:53.223Z"
+  },
+  {
+    "id": "343dcb8d-485b-4e91-8fbd-1cbfdc5165ec",
+    "name": "Test",
+    "email": "test@gmail.com",
+    "passwordHash": "$2b$10$YgMZMkpCvlzb2DpW/PNGLeeSTJTxyeC.7wRLhB2ceRse5HDhydmWG",
+    "createdAt": "2026-04-20T04:24:49.064Z"
+  }
+]

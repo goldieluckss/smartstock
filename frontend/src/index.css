@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  body {
+    font-family: Inter, sans-serif;
+    background: #f7f8fa;
+    color: #000000;
+  }
+
+  * {
+    border-color: #e5e7eb;
+  }
+}
+
+
+@layer components {
+
+  .card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .btn-primary {
+    background: #16a34a;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+  }
+}

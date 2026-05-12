@@ -13,6 +13,10 @@ const {
 
 const { createToken } = require("../utils/jwt");
 
+function getAuthUserId(req) {
+  return req.user?.userId || req.user?.id;
+}
+
 async function signup(req, res, next) {
   try {
     const validationError = validateSignupPayload(req.body);
@@ -64,7 +68,13 @@ async function login(req, res, next) {
 
 async function getCurrentUser(req, res, next) {
   try {
-    const user = await getUserById(req.user.id);
+    const userId = getAuthUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized." });
+    }
+
+    const user = await getUserById(userId);
 
     if (!user) {
       return res.status(404).json({
@@ -80,7 +90,13 @@ async function getCurrentUser(req, res, next) {
 
 async function updateCurrentUser(req, res, next) {
   try {
-    const user = await updateUserProfile(req.user.id, req.body || {});
+    const userId = getAuthUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized." });
+    }
+
+    const user = await updateUserProfile(userId, req.body || {});
 
     return res.status(200).json({
       message: "Profile updated.",
@@ -93,7 +109,13 @@ async function updateCurrentUser(req, res, next) {
 
 async function getCurrentSubscription(req, res, next) {
   try {
-    const subscription = await getUserSubscription(req.user.id);
+    const userId = getAuthUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized." });
+    }
+
+    const subscription = await getUserSubscription(userId);
 
     return res.status(200).json({ subscription });
   } catch (error) {

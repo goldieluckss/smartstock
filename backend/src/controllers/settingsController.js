@@ -1,8 +1,16 @@
 const settingsService = require("../services/settingsService");
 
+function getAuthUserId(req) {
+  return req.user?.userId || req.user?.id;
+}
+
 async function getSettings(req, res, next) {
   try {
-    const userId = req.user.id;
+    const userId = getAuthUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized." });
+    }
 
     const settings = await settingsService.getSettings(userId);
 
@@ -14,7 +22,11 @@ async function getSettings(req, res, next) {
 
 async function updateSettings(req, res, next) {
   try {
-    const userId = req.user.id;
+    const userId = getAuthUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized." });
+    }
 
     const settings = await settingsService.updateSettings(userId, req.body || {});
 

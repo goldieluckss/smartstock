@@ -26,7 +26,7 @@ export default function Landing() {
 
         {/* LOGO */}
         <img
-          src="/logo1.png"
+          src="/smartstock-logo.png"
           alt="SmartStock Logo"
           className="w-40 h-40 drop-shadow-2xl animate-bounce"
         />

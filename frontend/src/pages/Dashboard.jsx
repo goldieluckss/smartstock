@@ -85,7 +85,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-5 pb-20 bg-gray-100 min-h-screen text-white">
       <PageHeader
-        logo="/logo-only.png"
+        logo="/smartstock-logo-only.png"
         title="SmartStock"
         subtitle="Scan. Track. Manage — Smarter."
       />

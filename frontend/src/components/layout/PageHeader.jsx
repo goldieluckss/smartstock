@@ -11,7 +11,7 @@ export default function PageHeader({
   const navigate = useNavigate();
 
   return (
-    <div className={`px-5 pt-6 pb-4 ${className}`}>
+    <div className={`px-5 pt-12 pb-4 ${className}`}>
       <div className="flex items-center justify-between">
         {/* LEFT SIDE */}
         <div className="flex items-center gap-3">

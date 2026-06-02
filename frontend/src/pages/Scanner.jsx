@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import PageHeader from "../components/layout/PageHeader";
 import { apiRequest } from "@/lib/api";
 
-import smartstockLogo from "../assets/logo.jpg";
+import smartstockLogo from "../../assets/logo.jpg";
 
 export default function Scanner() {
   const [cameraOpen, setCameraOpen] = useState(false);

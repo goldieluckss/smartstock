@@ -5,7 +5,7 @@ export default function PageHeader({
   subtitle,
   action,
   logo,
-  avatar, // 👈 add this
+  avatar,
   className = "",
 }) {
   const navigate = useNavigate();
@@ -13,14 +13,16 @@ export default function PageHeader({
   return (
     <div className={`px-5 pt-6 pb-4 ${className}`}>
       <div className="flex items-center justify-between">
-
         {/* LEFT SIDE */}
         <div className="flex items-center gap-3">
           {logo && (
             <img
               src={logo}
-              alt="logo"
-              className="w-10 h-10 object-contain"
+              alt={`${title} logo`}
+              className="h-10 w-10 object-contain"
+              onError={(e) => {
+                console.error("Logo failed to load:", e.currentTarget.src);
+              }}
             />
           )}
 
@@ -39,27 +41,24 @@ export default function PageHeader({
 
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-3">
-
-          {/* CUSTOM ACTION (optional) */}
           {action}
 
-          {/* AVATAR */}
           {avatar ? (
-  <img
-    src={avatar}
-    className="w-10 h-10 rounded-full object-cover border"
-  />
-) : (
-  <div
-    onClick={() => navigate("/profile")}
-    className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer"
-  >
-    R
-  </div>
-)}
-
+            <img
+              src={avatar}
+              alt="User avatar"
+              className="h-10 w-10 rounded-full border object-cover"
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => navigate("/profile")}
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-blue-600 font-bold text-white"
+            >
+              R
+            </button>
+          )}
         </div>
-
       </div>
     </div>
   );

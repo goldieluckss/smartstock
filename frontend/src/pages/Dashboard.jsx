@@ -13,7 +13,7 @@ import RecentMovements from "../components/dashboard/RecentMovements";
 import CategoryChart from "../components/dashboard/CategoryChart";
 import { apiRequest } from "@/lib/api";
 
-const smartstockLogo = "/smartstock-logo.png";
+import smartstockLogo from "../../assets/smartstock-logo.png";
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -49,8 +49,8 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 text-gray-900">
-        <div className="w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+      <div className="flex h-screen items-center justify-center bg-gray-100 text-gray-900">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-blue-400 border-t-transparent" />
       </div>
     );
   }
@@ -58,17 +58,19 @@ export default function Dashboard() {
   const totalProducts = products.length;
 
   const totalStock = products.reduce(
-    (sum, p) => sum + Number(p.quantity || 0),
+    (sum, product) => sum + Number(product.quantity || 0),
     0
   );
 
   const lowStockItems = products.filter(
-    (p) => Number(p.quantity || 0) <= Number(p.low_stock_threshold || 5)
+    (product) =>
+      Number(product.quantity || 0) <=
+      Number(product.low_stock_threshold || 5)
   );
 
   const totalValue = products.reduce(
-    (sum, p) =>
-      sum + Number(p.quantity || 0) * Number(p.selling_price || 0),
+    (sum, product) =>
+      sum + Number(product.quantity || 0) * Number(product.selling_price || 0),
     0
   );
 
@@ -76,16 +78,16 @@ export default function Dashboard() {
   const sevenDaysFromNow = new Date();
   sevenDaysFromNow.setDate(today.getDate() + 7);
 
-  const expiringSoonItems = products.filter((p) => {
-    if (!p.expiry_date) return false;
+  const expiringSoonItems = products.filter((product) => {
+    if (!product.expiry_date) return false;
 
-    const expiryDate = new Date(p.expiry_date);
+    const expiryDate = new Date(product.expiry_date);
 
     return expiryDate >= today && expiryDate <= sevenDaysFromNow;
   });
 
   return (
-    <div className="space-y-5 pb-20 bg-gray-100 min-h-screen text-white">
+    <div className="min-h-screen space-y-5 bg-gray-100 pb-20 text-white">
       <PageHeader
         logo={smartstockLogo}
         title="SmartStock"
@@ -94,7 +96,7 @@ export default function Dashboard() {
 
       {error && (
         <div className="px-5">
-          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3 text-sm">
+          <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-600">
             {error}
           </div>
         </div>
@@ -105,12 +107,8 @@ export default function Dashboard() {
         expiringCount={expiringSoonItems.length}
       />
 
-      <div className="px-5 grid grid-cols-2 gap-3">
-        <StatsCard
-          icon={Package}
-          label="Total Products"
-          value={totalProducts}
-        />
+      <div className="grid grid-cols-2 gap-3 px-5">
+        <StatsCard icon={Package} label="Total Products" value={totalProducts} />
 
         <StatsCard
           icon={ShoppingCart}

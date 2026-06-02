@@ -81,7 +81,7 @@ export default function Inventory() {
   });
 
   return (
-    <div className="space-y-4 p-4 text-gray-900">
+    <div className="space-y-4 px-4 py-12 text-gray-900">
       <div>
         <h1 className="text-2xl font-bold">Inventory</h1>
         <p className="text-sm text-gray-500">{products.length} products</p>

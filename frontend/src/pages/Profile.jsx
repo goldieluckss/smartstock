@@ -92,7 +92,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 space-y-5 text-gray-800">
+    <div className="min-h-screen bg-gray-50 px-4 py-12 space-y-5 text-gray-800">
       {/* HEADER */}
       <div>
         <h1 className="text-xl font-bold">Profile</h1>

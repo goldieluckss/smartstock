@@ -98,7 +98,7 @@ export default function History() {
   }
 
   return (
-    <div className="space-y-4 text-gray-900 p-4">
+    <div className="space-y-4 text-gray-900 px-4 py-12">
       {/* HEADER WITH BACK BUTTON */}
       <div className="flex items-center gap-3">
         <button

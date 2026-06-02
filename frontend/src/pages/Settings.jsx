@@ -71,7 +71,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 space-y-5 text-gray-800">
+    <div className="min-h-screen bg-gray-50 px-4 py-12 space-y-5 text-gray-800">
       <div className="flex items-center gap-3">
         <button
           onClick={() => navigate("/profile")}

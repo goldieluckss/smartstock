@@ -13,6 +13,8 @@ import RecentMovements from "../components/dashboard/RecentMovements";
 import CategoryChart from "../components/dashboard/CategoryChart";
 import { apiRequest } from "@/lib/api";
 
+const smartstockLogo = "/smartstock-logo.png";
+
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -85,7 +87,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-5 pb-20 bg-gray-100 min-h-screen text-white">
       <PageHeader
-        logo="/logo-only.png"
+        logo={smartstockLogo}
         title="SmartStock"
         subtitle="Scan. Track. Manage — Smarter."
       />

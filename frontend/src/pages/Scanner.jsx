@@ -17,6 +17,8 @@ import { toast } from "sonner";
 import PageHeader from "../components/layout/PageHeader";
 import { apiRequest } from "@/lib/api";
 
+import smartstockLogo from "../assets/logo.jpg";
+
 export default function Scanner() {
   const [cameraOpen, setCameraOpen] = useState(false);
   const [manualOpen, setManualOpen] = useState(false);
@@ -60,11 +62,7 @@ export default function Scanner() {
           const name = String(p.name || "").toLowerCase();
           const query = q.toLowerCase();
 
-          return (
-            qrCode === query ||
-            sku === query ||
-            name.includes(query)
-          );
+          return qrCode === query || sku === query || name.includes(query);
         });
       }
 
@@ -154,9 +152,9 @@ export default function Scanner() {
   };
 
   return (
-    <div className="space-y-5 h-screen overflow-y-auto">
+    <div className="h-screen space-y-5 overflow-y-auto">
       <PageHeader
-        logo="logo-only.png"
+        logo={smartstockLogo}
         title="Stock Scanner"
         subtitle="Scan QR or search product"
       />
@@ -168,18 +166,18 @@ export default function Scanner() {
         />
       )}
 
-      <div className="px-5 space-y-4">
+      <div className="space-y-4 px-5">
         <div
-          className="bg-white bg-card border-2 border-dashed border-primary border-blue-500 hover:bg-blue-100 rounded-3xl p-8 flex flex-col items-center gap-4 cursor-pointer transition-colors"
+          className="flex cursor-pointer flex-col items-center gap-4 rounded-3xl border-2 border-dashed border-blue-500 bg-white p-8 transition-colors hover:bg-blue-100"
           onClick={() => setCameraOpen(true)}
         >
-          <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
-            <Camera className="h-20 w-20 text-blue-700 bg-blue-100 p-5 rounded-2xl" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-100">
+            <Camera className="h-20 w-20 rounded-2xl bg-blue-100 p-5 text-blue-700" />
           </div>
 
           <div className="text-center">
             <p className="font-semibold">Tap to Scan QR Code</p>
-            <p className="text-gray-400 text-xs text-muted-foreground">
+            <p className="text-xs text-gray-400">
               Point camera at product QR
             </p>
           </div>
@@ -188,13 +186,13 @@ export default function Scanner() {
         {!manualOpen ? (
           <button
             onClick={() => setManualOpen(true)}
-            className="w-full flex items-center justify-center gap-2 py-2.5 text-sm text-muted-foreground hover:text-foreground"
+            className="flex w-full items-center justify-center gap-2 py-2.5 text-sm text-gray-500 hover:text-gray-900"
           >
             <Keyboard className="h-4 w-4" />
             Search manually
           </button>
         ) : (
-          <div className="bg-white bg-card border-blue-400 border rounded-2xl p-4 space-y-3">
+          <div className="space-y-3 rounded-2xl border border-blue-400 bg-white p-4">
             <div className="flex justify-between">
               <p className="text-sm font-medium">Manual Search</p>
               <button onClick={() => setManualOpen(false)}>
@@ -204,7 +202,7 @@ export default function Scanner() {
 
             <div className="flex gap-2">
               <Input
-                className="bg-white border-gray/50 text-black"
+                className="border-gray-300 bg-white text-black"
                 value={qrInput}
                 onChange={(e) => setQrInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && searchProduct()}
@@ -216,7 +214,7 @@ export default function Scanner() {
                 onClick={() => searchProduct()}
                 disabled={searching}
               >
-                <Search className="text-white h-5 w-5" />
+                <Search className="h-5 w-5 text-white" />
               </Button>
             </div>
           </div>
@@ -225,14 +223,14 @@ export default function Scanner() {
         {foundProduct && (
           <>
             <div className="space-y-3">
-              <div className="bg-white border-blue-300 border rounded-2xl p-4">
-                <div className="flex gap-3 items-center">
-                  <div className="w-14 h-14 rounded-xl bg-gray-100 overflow-hidden flex items-center justify-center">
+              <div className="rounded-2xl border border-blue-300 bg-white p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl bg-gray-100">
                     {foundProduct.image ? (
                       <img
                         src={foundProduct.image}
                         alt={foundProduct.name}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
                       <span className="text-xs text-gray-400">No Img</span>
@@ -261,7 +259,7 @@ export default function Scanner() {
 
                 <hr className="my-3 border-gray-200" />
 
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                   <button
                     className="text-xs text-red-500 underline"
                     onClick={() => {
@@ -284,7 +282,7 @@ export default function Scanner() {
               </div>
             </div>
 
-            <div className="bg-white border-blue-300 border rounded-2xl p-4 space-y-4">
+            <div className="space-y-4 rounded-2xl border border-blue-300 bg-white p-4">
               <Label className="text-sm">Quantity</Label>
 
               <div className="flex items-center gap-3">
@@ -302,7 +300,7 @@ export default function Scanner() {
                   onChange={(e) =>
                     setQuantity(Math.max(1, Number(e.target.value) || 1))
                   }
-                  className="text-center w-20"
+                  className="w-20 text-center"
                 />
 
                 <Button
@@ -319,7 +317,7 @@ export default function Scanner() {
                   className="bg-green-600"
                   disabled={processing}
                 >
-                  <ArrowDownLeft className="text-white h-4 w-4" />
+                  <ArrowDownLeft className="h-4 w-4 text-white" />
                   <p className="text-xs text-white">Stock In</p>
                 </Button>
 
@@ -328,7 +326,7 @@ export default function Scanner() {
                   className="bg-teal-600"
                   disabled={processing}
                 >
-                  <ShoppingCart className="text-white h-4 w-4" />
+                  <ShoppingCart className="h-4 w-4 text-white" />
                   <p className="text-xs text-white">Sold</p>
                 </Button>
 
@@ -337,16 +335,16 @@ export default function Scanner() {
                   className="bg-red-600"
                   disabled={processing}
                 >
-                  <ArrowUpRight className="text-white h-4 w-4" />
+                  <ArrowUpRight className="h-4 w-4 text-white" />
                   <p className="text-xs text-white">Remove</p>
                 </Button>
 
-                <div className="text-center text-xs text-gray-500 col-span-3">
-                  <span className="text-green-600 font-bold">Stock In</span> =
+                <div className="col-span-3 text-center text-xs text-gray-500">
+                  <span className="font-bold text-green-600">Stock In</span> =
                   receiving goods ·{" "}
-                  <span className="text-teal-600 font-bold">Sold</span> =
+                  <span className="font-bold text-teal-600">Sold</span> =
                   customer purchase ·{" "}
-                  <span className="text-red-600 font-bold">Remove</span> =
+                  <span className="font-bold text-red-600">Remove</span> =
                   damaged/loss
                 </div>
               </div>

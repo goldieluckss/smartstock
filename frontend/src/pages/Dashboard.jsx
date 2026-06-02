@@ -13,7 +13,7 @@ import RecentMovements from "../components/dashboard/RecentMovements";
 import CategoryChart from "../components/dashboard/CategoryChart";
 import { apiRequest } from "@/lib/api";
 
-import smartstockLogo from "../../assets/logo.png";
+import smartstockLogo from "../../assets/logo.jpg";
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);

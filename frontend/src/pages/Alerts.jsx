@@ -75,7 +75,7 @@ export default function Alerts() {
   }
 
   return (
-    <div className="p-5 space-y-3 text-gray-900">
+    <div className="px-4 py-12 space-y-3 text-gray-900">
       <div>
         <h1 className="text-2xl font-bold">Alerts</h1>
         <p className="text-sm text-gray-500">
